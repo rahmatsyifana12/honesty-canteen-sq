@@ -1,13 +1,13 @@
 const authService = require("../services/auth.service");
 
-function register(req, res) {
+async function register(req, res) {
     const { studentId, password } = req.body;
-
-    const isRegistered = authService.register(studentId, password);
-    if (!isRegistered) {
-        return res.status(400).json({
+    try {
+        await authService.register(studentId, password);
+    } catch (error) {
+        return res.status(error.statusCode).json({
             status: 'fail',
-            message: 'Fail to register'
+            message: error.message
         });
     }
 

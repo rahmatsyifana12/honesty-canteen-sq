@@ -1,11 +1,12 @@
 const { User } = require("../models");
+const ResponseError = require("../utils/error");
 
 class AuthService {
 
     async register(studentId, password) {
         const foundUser = await User.findOne({ where: { studentId } });
         if (foundUser) {
-            return false;
+            throw new ResponseError('User already exists', 400);
         }
 
         await User.create({ studentId, password });
@@ -14,6 +15,4 @@ class AuthService {
 
 }
 
-const authService = new AuthService();
-
-module.exports = authService;
+module.exports = new AuthService();
