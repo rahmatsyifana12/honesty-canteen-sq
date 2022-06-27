@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const { User } = require("../models");
 const ResponseError = require("../utils/error");
 
@@ -26,7 +27,12 @@ class AuthService {
             throw new ResponseError('Student ID is invalid', 400);
         }
 
-        await User.create({ studentId, password });
+        const hashedPassword = bcrypt.hashSync(
+            password,
+            10
+        );
+
+        await User.create({ studentId, password: hashedPassword });
     }
 
 }
