@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const config = require('../config/config');
 const { User } = require("../models");
 const ResponseError = require("../utils/error");
 
@@ -29,7 +30,7 @@ class AuthService {
 
         const hashedPassword = bcrypt.hashSync(
             password,
-            10
+            config.hashRounds
         );
 
         await User.create({ studentId, password: hashedPassword });
