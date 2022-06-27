@@ -16,19 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     studentId: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: 'User must have a student ID' },
-        notEmpty: { msg: 'Student ID must not be empty' }
-      }
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: 'User must have a password' },
-        notEmpty: { msg: 'Password must not be empty' }
-      }
+      allowNull: false
     }
   }, {
     sequelize,
