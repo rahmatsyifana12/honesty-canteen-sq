@@ -37,6 +37,25 @@ async function login(req, res) {
     });
 }
 
+async function logout(req, res) {
+    const accessToken = req.headers['authorization'].split(' ')[1];
+    const studentId = jwt.decode(accessToken).studentId;
+
+    try {
+        
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully logged out'
+    });
+}
+
 module.exports = {
     register,
     login
