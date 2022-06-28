@@ -1,7 +1,9 @@
+const productService = require("../services/product.service");
+
 async function getAll(req, res) {
     let products;
     try {
-        
+        products = await productService.getAll();
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
