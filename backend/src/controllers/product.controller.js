@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const productService = require("../services/product.service");
 
-async function getAll(req, res) {
+async function getAllProduct(req, res) {
     let products;
     try {
         products = await productService.getAll();
@@ -19,7 +19,7 @@ async function getAll(req, res) {
     });
 }
 
-async function add(req, res) {
+async function addProduct(req, res) {
     const accessToken = req.headers['authorization'].split(' ')[1];
     const studentId = jwt.decode(accessToken).studentId;
 
@@ -39,6 +39,6 @@ async function add(req, res) {
 }
 
 module.exports = {
-    getAll,
-    add
+    getAllProduct,
+    addProduct
 };
