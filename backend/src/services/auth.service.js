@@ -8,7 +8,6 @@ class AuthService {
 
     async register(studentId, password) {
         const user = await User.findOne({ where: { studentId } });
-
         if (user) {
             throw new ResponseError('User already exists', 400);
         }
@@ -39,7 +38,6 @@ class AuthService {
 
     async login(studentId, password) {
         const user = await User.findOne({ where: { studentId } });
-
         if (!user) {
             throw new ResponseError('Student ID is incorrect', 400);
         }
@@ -58,6 +56,17 @@ class AuthService {
         await user.save();
 
         return accessToken;
+    }
+
+    async logout(studentId) {
+        const user = await User.findOne({ where: { studentId } });
+        if (!user) {
+            throw new ResponseError('User not found', 404);
+        }
+
+        user.accessToken = null;
+
+        await user.save();
     }
 
 }

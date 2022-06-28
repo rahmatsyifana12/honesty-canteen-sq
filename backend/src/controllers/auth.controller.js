@@ -42,7 +42,7 @@ async function logout(req, res) {
     const studentId = jwt.decode(accessToken).studentId;
 
     try {
-        
+        authService.logout(studentId);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
