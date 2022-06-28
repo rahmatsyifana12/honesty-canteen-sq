@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 const { User } = require("../models");
 const ResponseError = require("../utils/error");
@@ -34,6 +35,26 @@ class AuthService {
         );
 
         await User.create({ studentId, password: hashedPassword });
+    }
+
+    async login(studentId, password) {
+        const user = await User.findOne({ where: { studentId } });
+
+        if (!user) {
+            throw new ResponseError('Student ID is incorrect', 400);
+        }
+
+        if (!bcrypt.compareSync(password, user.password)) {
+            throw new ResponseError('Password is incorrect', 400);
+        }
+
+        const accessToken = jwt.sign(
+            { studentId },
+            config.jwt.accessSecret,
+            { expiresIn: config.jwt.accessExpire }
+        );
+
+        
     }
 
 }
