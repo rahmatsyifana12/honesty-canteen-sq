@@ -7,9 +7,9 @@ const ResponseError = require("../utils/error");
 class AuthService {
 
     async register(studentId, password) {
-        const foundUser = await User.findOne({ where: { studentId } });
+        const user = await User.findOne({ where: { studentId } });
 
-        if (foundUser) {
+        if (user) {
             throw new ResponseError('User already exists', 400);
         }
 
