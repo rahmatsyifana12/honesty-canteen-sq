@@ -22,7 +22,7 @@ async function login(req, res) {
     const { studentId, password } = req.body;
     let accessToken;
     try {
-        await authService.login(studentId, password);
+        accessToken = await authService.login(studentId, password);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
@@ -33,7 +33,7 @@ async function login(req, res) {
     return res.status(200).json({
         status: 'success',
         message: 'Successfully logged in',
-        data: {}
+        data: { accessToken }
     });
 }
 

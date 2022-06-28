@@ -54,7 +54,10 @@ class AuthService {
             { expiresIn: config.jwt.accessExpire }
         );
 
-        
+        user.accessToken = accessToken;
+        await user.save();
+
+        return accessToken;
     }
 
 }
