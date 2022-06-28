@@ -9,7 +9,7 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       studentId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
       },
       name: {

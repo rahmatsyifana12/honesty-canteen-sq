@@ -10,7 +10,11 @@ class ProductService {
     }
 
     async add(studentId, reqBody) {
-        await Product.create({ studentId, reqBody });
+        try {
+            await Product.create({ studentId, ...reqBody });
+        } catch (error) {
+            throw new ResponseError('Internal server error', 500);
+        }
     }
 
 }
