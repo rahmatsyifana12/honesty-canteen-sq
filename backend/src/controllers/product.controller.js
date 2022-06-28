@@ -20,12 +20,11 @@ async function getAll(req, res) {
 }
 
 async function add(req, res) {
-    const { name, description, image, price } = req.body;
     const accessToken = req.headers['authorization'].split(' ')[1];
     const studentId = jwt.decode(accessToken).studentId;
 
     try {
-        
+        await productService.add(studentId, req.body);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
@@ -40,5 +39,6 @@ async function add(req, res) {
 }
 
 module.exports = {
-    getAll
+    getAll,
+    add
 };

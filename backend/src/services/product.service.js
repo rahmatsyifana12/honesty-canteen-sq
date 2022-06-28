@@ -9,6 +9,10 @@ class ProductService {
         return products;
     }
 
+    async add(studentId, reqBody) {
+        await Product.create({ studentId, reqBody });
+    }
+
 }
 
 module.exports = new ProductService();
