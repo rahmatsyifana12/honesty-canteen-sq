@@ -8,7 +8,15 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
+      studentId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      image: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -17,12 +25,8 @@ module.exports = {
         allowNull: false
       },
       price: {
-        type: DataTypes.REAL,
+        type: DataTypes.INTEGER,
         allowNull: false
-      },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true
       },
       createdAt: {
         allowNull: false,
