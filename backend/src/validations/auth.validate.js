@@ -23,6 +23,4 @@ const newUserSchema = joi.object({
     password: passwordSchema.required()
 });
 
-module.exports = {
-    newUserSchema
-};
+module.exports = { newUserSchema };
