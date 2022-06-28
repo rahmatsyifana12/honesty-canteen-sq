@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const authService = require("../services/auth.service");
 
 async function register(req, res) {
@@ -58,5 +59,6 @@ async function logout(req, res) {
 
 module.exports = {
     register,
-    login
+    login,
+    logout
 };
