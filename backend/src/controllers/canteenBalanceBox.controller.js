@@ -1,7 +1,9 @@
+const canteenBalanceBoxService = require('../services/canteenBalanceBox.service');
+
 async function addBalance(req, res) {
     const { balance } = req.body;
     try {
-        
+        canteenBalanceBoxService.add(balance);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
