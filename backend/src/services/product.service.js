@@ -4,16 +4,26 @@ const ResponseError = require("../utils/error");
 class ProductService {
 
     async getAll() {
-        const products = Product.findAll();
+        try {
+            const products = Product.findAll();
 
-        return products;
+            return products;
+        } catch (error) {
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
     }
 
     async add(studentId, reqBody) {
         try {
             await Product.create({ studentId, ...reqBody });
         } catch (error) {
-            throw new ResponseError('Internal server error', 500);
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
         }
     }
 
