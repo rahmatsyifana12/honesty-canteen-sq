@@ -31,20 +31,32 @@ async function getAllInboxes(req, res) {
             message: error.message
         });
     }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully found all inboxes',
+        data: { inboxes }
+    });
 }
 
 async function deleteInbox(req, res) {
     const accessToken = req.headers['authorization'].split(' ')[1];
     const studentId = jwt.decode(accessToken).studentId;
+    const { inboxId } = req.params;
 
     try {
-        
+        await inboxService.delete(inboxId, studentId);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
             message: error.message
         });
     }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully deleted an inbox'
+    });
 }
 
-module.exports = { addInbox, getAllInboxes };
+module.exports = { addInbox, getAllInboxes, deleteInbox };

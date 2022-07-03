@@ -31,6 +31,25 @@ class InboxService {
         }
     }
 
+    async delete(inboxId, studentId) {
+        try {
+            const inbox = await Inbox.findOne({ where: { id: inboxId } });
+            if (inbox.studentId !== studentId) {
+                throw new ResponseError('Unauthorized error', 401);
+            }
+
+            const count = await Inbox.destroy({ where: { id: inboxId } });
+            if (count === 0) {
+                throw new ResponseError('Inbox not found', 404);
+            }
+        } catch (error) {
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
+    }
+
 }
 
 module.exports = new InboxService();

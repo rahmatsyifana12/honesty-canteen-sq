@@ -30,7 +30,7 @@ class ProductService {
     async buy(productId) {
         try {
             const count = await Product.destroy({ where: { id: productId } });
-            // console.log(count);
+
             if (count === 0) {
                 throw new ResponseError('Product not found', 404);
             }
