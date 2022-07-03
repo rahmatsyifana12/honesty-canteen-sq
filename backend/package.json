@@ -7,6 +7,7 @@
     "start": "node ./src/app",
     "dev": "nodemon ./src/app",
     "jwt:generate": "node ./scripts/jwt-generate",
+    "make-model": "sequelize model:create --name example --attributes name:string",
     "make-seed": "sequelize seed:generate --name example",
     "seed": "sequelize db:seed:all"
   },
