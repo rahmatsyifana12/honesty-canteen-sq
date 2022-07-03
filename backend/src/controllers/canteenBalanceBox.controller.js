@@ -34,4 +34,4 @@ async function withDraw(req, res) {
     });
 }
 
-module.exports = { addBalance };
+module.exports = { addBalance, withDraw };

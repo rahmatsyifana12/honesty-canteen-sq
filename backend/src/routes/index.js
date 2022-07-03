@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { register, login, logout } = require('../controllers/auth.controller');
-const { addBalance } = require('../controllers/canteenBalanceBox.controller');
+const { addBalance, withDraw } = require('../controllers/canteenBalanceBox.controller');
 const { getAllProduct, addProduct } = require('../controllers/product.controller');
 const { authenticate } = require('../middlewares/auth.middleware');
 const { validate } = require('../middlewares/validate.middleware');
@@ -20,5 +20,6 @@ router.get('/api/v1/products', getAllProduct);
 
 // DELETE METHOD
 router.delete('/api/v1/auth/logout', authenticate, logout);
+router.delete('/api/v1/canteen-balance-box', authenticate, withDraw);
 
 module.exports = router;
