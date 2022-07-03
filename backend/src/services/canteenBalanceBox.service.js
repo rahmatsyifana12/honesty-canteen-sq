@@ -20,7 +20,7 @@ class CanteenBalanceBoxService {
         try {
             const canteenBalanceBox = CanteenBalanceBox.findOne({ where: { id: 1 } });
             if (balance > canteenBalanceBox.balance) {
-                throw new ResponseError('Canteen balance box is not enough');
+                throw new ResponseError('Canteen\'s balance is not enough');
             }
 
             canteenBalanceBox.balance -= balance;
