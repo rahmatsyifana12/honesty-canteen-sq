@@ -44,7 +44,7 @@ async function buyProduct(req, res) {
     const { productId } = req.params;
 
     try {
-        
+        productService.buy(productId);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
