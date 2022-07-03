@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const { register, login, logout } = require('../controllers/auth.controller');
 const { addBalance, withDraw, getBalance } = require('../controllers/canteenBalanceBox.controller');
-const { addInbox } = require('../controllers/inbox.controller');
-const { getAllProduct, addProduct, buyProduct } = require('../controllers/product.controller');
+const { addInbox, getAllInboxes } = require('../controllers/inbox.controller');
+const { getAllProducts, addProduct, buyProduct } = require('../controllers/product.controller');
 const { authenticate } = require('../middlewares/auth.middleware');
 const { validate } = require('../middlewares/validate.middleware');
 const { newUserSchema } = require('../validations/auth.validate');
@@ -18,8 +18,9 @@ router.post('/api/v1/canteen-balance-box', authenticate, addBalance);
 router.post('/api/v1/inboxes', authenticate, addInbox);
 
 // GET METHOD
-router.get('/api/v1/products', getAllProduct);
+router.get('/api/v1/products', getAllProducts);
 router.get('/api/v1/canteen-balance-box', authenticate, getBalance);
+router.get('/api/v1/inboxes', authenticate, getAllInboxes);
 
 // DELETE METHOD
 router.delete('/api/v1/auth/logout', authenticate, logout);

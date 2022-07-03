@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const productService = require("../services/product.service");
 
-async function getAllProduct(req, res) {
+async function getAllProducts(req, res) {
     let products;
     try {
         products = await productService.getAll();
@@ -57,7 +57,7 @@ async function buyProduct(req, res) {
 }
 
 module.exports = {
-    getAllProduct,
+    getAllProducts,
     addProduct,
     buyProduct
 };

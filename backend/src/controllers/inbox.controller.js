@@ -18,4 +18,19 @@ async function addInbox(req, res) {
     });
 }
 
-module.exports = { addInbox };
+async function getAllInboxes(req, res) {
+    const accessToken = req.headers['authorization'].split(' ')[1];
+    const studentId = jwt.decode(accessToken).studentId;
+    let inboxes;
+
+    try {
+        inboxes = await inboxService.getAll(studentId);
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+}
+
+module.exports = { addInbox, getAllInboxes };
