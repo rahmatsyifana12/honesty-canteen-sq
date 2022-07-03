@@ -22,6 +22,6 @@ router.get('/api/v1/canteen-balance-box', authenticate, getBalance);
 // DELETE METHOD
 router.delete('/api/v1/auth/logout', authenticate, logout);
 router.delete('/api/v1/canteen-balance-box', authenticate, withDraw);
-router.delete('/api/v1/products/buy', authenticate, buyProduct);
+router.delete('/api/v1/products/buy/:productId', authenticate, buyProduct);
 
 module.exports = router;
