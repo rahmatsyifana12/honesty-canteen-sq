@@ -4,7 +4,7 @@ const { sequelize } = require('./models');
 const config = require('./config/config');
 
 const app = express();
-const PORT = 5000 || config.port;
+const PORT = config.port ?? 5000;
 
 app.use(express.json());
 app.use(routes);
