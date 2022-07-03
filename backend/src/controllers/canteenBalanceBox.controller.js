@@ -20,7 +20,7 @@ async function addBalance(req, res) {
 async function withDraw(req, res) {
     const { balance } = req.body;
     try {
-        
+        canteenBalanceBoxService.withdraw(balance);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
