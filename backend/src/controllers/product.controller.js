@@ -38,7 +38,28 @@ async function addProduct(req, res) {
     });
 }
 
+async function buyProduct(req, res) {
+    const accessToken = req.headers['authorization'].split(' ')[1];
+    const studentId = jwt.decode(accessToken).studentId;
+    const { productId } = req.params;
+
+    try {
+        
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully added a product'
+    });
+}
+
 module.exports = {
     getAllProduct,
-    addProduct
+    addProduct,
+    buyProduct
 };

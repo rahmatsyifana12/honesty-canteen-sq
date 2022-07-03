@@ -27,6 +27,20 @@ class ProductService {
         }
     }
 
+    async buy(productId) {
+        try {
+            const count = Product.destroy({ where: { id: productId } });
+            if (!count) {
+                throw ResponseError('Product not found', 404);
+            }
+        } catch (error) {
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
+    }
+
 }
 
 module.exports = new ProductService();

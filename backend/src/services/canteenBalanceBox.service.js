@@ -20,12 +20,25 @@ class CanteenBalanceBoxService {
         try {
             const canteenBalanceBox = CanteenBalanceBox.findOne({ where: { id: 1 } });
             if (balance > canteenBalanceBox.balance) {
-                throw new ResponseError('Canteen balance box is not enough');
+                throw new ResponseError('Canteen\'s balance is not enough');
             }
 
             canteenBalanceBox.balance -= balance;
 
             canteenBalanceBox.save();
+        } catch (error) {
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
+    }
+
+    async get() {
+        try {
+            const canteenBalanceBox = CanteenBalanceBox.findOne({ where: { id: 1 } });
+
+            return canteenBalanceBox.balance;
         } catch (error) {
             if (!error.statusCode) {
                 throw new ResponseError('Internal server error', 500);
