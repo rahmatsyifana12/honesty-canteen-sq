@@ -17,4 +17,21 @@ async function addBalance(req, res) {
     });
 }
 
+async function withDraw(req, res) {
+    const { balance } = req.body;
+    try {
+        
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully withdraw balance'
+    });
+}
+
 module.exports = { addBalance };
