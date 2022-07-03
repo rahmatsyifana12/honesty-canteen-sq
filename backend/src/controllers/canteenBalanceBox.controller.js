@@ -2,6 +2,7 @@ const canteenBalanceBoxService = require('../services/canteenBalanceBox.service'
 
 async function addBalance(req, res) {
     const { balance } = req.body;
+
     try {
         await canteenBalanceBoxService.add(balance);
     } catch (error) {
@@ -19,6 +20,7 @@ async function addBalance(req, res) {
 
 async function withDraw(req, res) {
     const { balance } = req.body;
+
     try {
         await canteenBalanceBoxService.withdraw(balance);
     } catch (error) {
@@ -36,6 +38,7 @@ async function withDraw(req, res) {
 
 async function getBalance(req, res) {
     let balance;
+
     try {
         balance = await canteenBalanceBoxService.get();
     } catch (error) {

@@ -22,6 +22,7 @@ async function register(req, res) {
 async function login(req, res) {
     const { studentId, password } = req.body;
     let accessToken;
+
     try {
         accessToken = await authService.login(studentId, password);
     } catch (error) {

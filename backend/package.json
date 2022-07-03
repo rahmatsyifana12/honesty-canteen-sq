@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./src/app",
     "dev": "nodemon ./src/app",
-    "jwt:generate": "node ./scripts/jwt-generate"
+    "jwt:generate": "node ./scripts/jwt-generate",
+    "make-seed": "sequelize seed:generate --name example",
+    "seed": "sequelize db:seed:all"
   },
   "author": "",
   "license": "ISC",

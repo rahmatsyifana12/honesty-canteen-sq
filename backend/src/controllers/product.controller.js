@@ -39,8 +39,6 @@ async function addProduct(req, res) {
 }
 
 async function buyProduct(req, res) {
-    const accessToken = req.headers['authorization'].split(' ')[1];
-    const studentId = jwt.decode(accessToken).studentId;
     const { productId } = req.params;
 
     try {
