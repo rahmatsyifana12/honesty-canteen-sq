@@ -54,7 +54,7 @@ async function buyProduct(req, res) {
 
     return res.status(200).json({
         status: 'success',
-        message: 'Successfully added a product'
+        message: 'Successfully bought a product'
     });
 }
 

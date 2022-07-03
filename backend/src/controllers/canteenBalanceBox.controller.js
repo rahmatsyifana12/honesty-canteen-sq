@@ -35,8 +35,6 @@ async function withDraw(req, res) {
 }
 
 async function getBalance(req, res) {
-    const accessToken = req.headers['authorization'].split(' ')[1];
-    const studentId = jwt.decode(accessToken).studentId;
     let balance;
     try {
         balance = canteenBalanceBoxService.get();
