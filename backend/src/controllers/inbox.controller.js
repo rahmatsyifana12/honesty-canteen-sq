@@ -33,4 +33,18 @@ async function getAllInboxes(req, res) {
     }
 }
 
+async function deleteInbox(req, res) {
+    const accessToken = req.headers['authorization'].split(' ')[1];
+    const studentId = jwt.decode(accessToken).studentId;
+
+    try {
+        
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+}
+
 module.exports = { addInbox, getAllInboxes };
