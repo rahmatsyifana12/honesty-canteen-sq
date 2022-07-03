@@ -34,6 +34,19 @@ class CanteenBalanceBoxService {
         }
     }
 
+    async get() {
+        try {
+            const canteenBalanceBox = CanteenBalanceBox.findOne({ where: { id: 1 } });
+
+            return canteenBalanceBox.balance;
+        } catch (error) {
+            if (!error.statusCode) {
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
+    }
+
 }
 
 module.exports = new CanteenBalanceBoxService();
