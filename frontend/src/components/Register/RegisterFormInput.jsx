@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 function RegisterFormInput({ type, propKey }) {
     return (
         <div className="form">
-            <input className="form-control" type={type} name={propKey} placeholder={`Enter your ${propKey}`} />
+            <input className="form-control" type={type} name={propKey} placeholder={propKey} />
         </div>
     );
 }
