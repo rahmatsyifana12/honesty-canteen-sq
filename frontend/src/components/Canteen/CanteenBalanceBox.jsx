@@ -34,7 +34,7 @@ function CanteenBalanceBox() {
         const accessToken = localStorage.getItem('accessToken');
         try{
             const response = await axios.put('http://localhost:5000/api/v1/canteen-balance-box/add', {
-              balance: addBalance
+                balance: addBalance
             }, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -42,11 +42,11 @@ function CanteenBalanceBox() {
             });
 
             navigate('/products');
-          } catch(error) {
+            } catch(error) {
             if (error.response) {
                 console.log(error.response.data);
             }
-          }
+        }
     }
 
     const withdraw = async () => {
