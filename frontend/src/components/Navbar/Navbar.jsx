@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+    const [accessToken, setAccessToken] = useState('');
+
+    useEffect(() => {
+        const rawAccessToken = localStorage.getItem('accessToken');
+        setAccessToken(rawAccessToken);
+    }, [accessToken]);
+
     return (
         <nav className="navbar navbar-light navbar-expand-lg fixed-top py-3">
           <div className="container">
@@ -22,54 +30,79 @@ function Navbar() {
             </button>
             <div id="navbarTogglerDemo02" className="collapse navbar-collapse">
               <ul className="navbar-nav ms-auto">
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                <li className="nav-item">
-                    <button
-                      className="btn btn-primary shadow ms-2"
-                      type="button"
-                      style={{
-                        fontSize: "16px",
-                        paddingRight: "20px",
-                        paddingLeft: "20px",
-                        backgroundColor: "#fff",
-                        color: "#316CF5"
-                      }}
-                    >
-                      Login
-                    </button>
-                  </li>
-                </Link>
-                <Link to="/register" style={{ textDecoration: "none" }}>
-                  <li className="nav-item">
-                    <button
-                      className="btn btn-primary shadow ms-2"
-                      type="button"
-                      style={{
-                        fontSize: "16px",
-                        paddingRight: "20px",
-                        paddingLeft: "20px"
-                      }}
-                    >
-                      Sign Up
-                    </button>
-                  </li>
-                </Link>
+                {
+                    !localStorage.getItem('accessToken') &&
+                    <>
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px",
+                                    backgroundColor: "#fff",
+                                    color: "#316CF5"
+                                }}
+                                >
+                                Login
+                                </button>
+                            </li>
+                        </Link>
+                        <Link to="/register" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                Sign Up
+                                </button>
+                            </li>
+                        </Link>
+                    </>
+                }
 
-                <Link to="/products" style={{ textDecoration: "none" }}>
-                  <li className="nav-item">
-                    <button
-                      className="btn btn-primary shadow ms-2"
-                      type="button"
-                      style={{
-                        fontSize: "16px",
-                        paddingRight: "20px",
-                        paddingLeft: "20px"
-                      }}
-                    >
-                      Add Product
-                    </button>
-                  </li>
-                </Link>
+                {
+                    localStorage.getItem('accessToken') &&
+                    <>
+                        <Link to="/products" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                Add Product
+                                </button>
+                            </li>
+                        </Link>
+                        <Link to="/" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                Sign Out
+                                </button>
+                            </li>
+                        </Link>
+                    </>
+                }
               </ul>
             </div>
           </div>

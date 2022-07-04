@@ -62,7 +62,7 @@ function AddProductForm() {
                         id="product-name"
                         type="text"
                         className="form-control mb-4"
-                        name="name"
+                        name="price"
                         placeholder="Price"
                         autoFocus
                     />
