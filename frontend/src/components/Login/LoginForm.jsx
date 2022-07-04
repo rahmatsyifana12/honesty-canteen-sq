@@ -1,25 +1,64 @@
-import { createContext, useState } from "react";
-import { Link } from 'react-router-dom';
-import LoginFormInput from "./LoginFormInput";
-
-const FormInputContext = createContext();
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from "react";
 
 function LoginForm() {
-    const [data, setData] = useState({
-        studentId: '',
-        password: ''
-    });
+    const [studentId, setStudentId] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const login = async () => {
+        try{
+            const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
+              studentId,
+              password
+            });
+            
+            const accessToken = response.data.data.accessToken;
+            localStorage.setItem('accessToken', accessToken);
+
+            navigate('/products');
+          } catch(error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+          }
+    }
 
     const [errors, setErrors] = useState();
 
     return (
-        <form action="/login" method="POST">
-            <FormInputContext.Provider value={[data, setData, errors]}>
-                <LoginFormInput type="text" propKey="username" iconName="user" />
-                <LoginFormInput type="password" propKey="password" iconName="lock" />
-            </FormInputContext.Provider>
-            <button type="submit" className="btn">Login</button>
-            <Link to="/" className="btn">Back</Link>
+        <form method="POST">
+            <div className="row">
+                <div className="form-group col-6">
+                    <input
+                        onChange={(e) => setStudentId(e.target.value)}
+                        id="student-id"
+                        type="text"
+                        className="form-control mb-4"
+                        name="studentId"
+                        placeholder="Student ID"
+                        autoFocus
+                    />
+                    <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        id="password"
+                        type="password"
+                        className="form-control mb-4"
+                        name="password"
+                        placeholder="Password"
+                        autoFocus
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-lg btn-block"
+                      style={{ fontSize: "16px" }}
+                      onClick={login}
+                    >Login
+                    </button>
+                </div>
+            </div>
         </form>
     );
 }
