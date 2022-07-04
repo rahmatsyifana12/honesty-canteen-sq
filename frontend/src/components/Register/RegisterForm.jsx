@@ -1,28 +1,63 @@
 import { createContext, useState } from "react";
-import { Link } from 'react-router-dom';
-import RegisterFormInput from "./RegisterFormInput";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const FormInputContext = createContext();
 
 function RegisterForm() {
-    const [data, setData] = useState({
-        studentId: '',
-        password: ''
-    });
+    const [studentId, setStudentId] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-    const [errors, setErrors] = useState({});
+    const register = async () => {
+        try {
+            await axios.post('http://localhost:5000/api/v1/auth/register', {
+                studentId,
+                password
+            });
+            console.log('success!');
+            navigate('/login');
+        } catch(err) {
+            console.log(err);
+            
+        }
+    }
 
     return (
-        <form action="/register" method="POST">
-            <FormInputContext.Provider value={[data, setData, errors]}>
-                <RegisterFormInput type="text" propKey="Student ID" />
-                <RegisterFormInput type="password" propKey="Password" />
-                <RegisterFormInput type="password" propKey="Confirm Password" />
-            </FormInputContext.Provider>
-            <button type="submit" className="btn">Register</button>
-            <Link to='/login' className="btn">Back</Link>
+        <form method="POST">
+            <div className="row">
+                <div className="form-group col-6">
+                    <input
+                        onChange={(e) => setStudentId(e.target.value)}
+                        id="student-id"
+                        type="text"
+                        className="form-control mb-4"
+                        name="studentId"
+                        placeholder="Student ID"
+                        autoFocus
+                    />
+                    <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        id="password"
+                        type="password"
+                        className="form-control mb-4"
+                        name="password"
+                        placeholder="Password"
+                        autoFocus
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-lg btn-block"
+                      style={{ fontSize: "16px" }}
+                      onClick={register}
+                    >Register
+                    </button>
+                </div>
+            </div>
         </form>
     );
 }
 
 export default RegisterForm;
+export { FormInputContext };
