@@ -28,7 +28,7 @@ function CanteenBalanceBox() {
 
     return (
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
             <div>
                 {balance}
             </div>

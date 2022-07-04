@@ -30,7 +30,7 @@ function Navbar() {
     }
 
     return (
-        <nav className="navbar navbar-light navbar-expand-lg fixed-top py-3">
+        <nav className="navbar navbar-light navbar-expand-lg py-3">
           <div className="container">
             {
                 

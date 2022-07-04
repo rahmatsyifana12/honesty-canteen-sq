@@ -11,12 +11,17 @@ function AddProductForm() {
     const navigate = useNavigate();
 
     const add = async () => {
+        const accessToken = localStorage.getItem('accessToken');
         try {
             const response = await axios.post('http://localhost:5000/api/v1/auth/register', {
                 name,
                 image,
                 description,
                 price
+            }, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
             });
             navigate('/');
         } catch(error) {
