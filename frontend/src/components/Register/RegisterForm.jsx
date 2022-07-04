@@ -12,15 +12,16 @@ function RegisterForm() {
 
     const register = async () => {
         try {
-            await axios.post('http://localhost:5000/api/v1/auth/register', {
+            const response = await axios.post('http://localhost:5000/api/v1/auth/register', {
                 studentId,
                 password
             });
-            console.log('success!');
             navigate('/login');
-        } catch(err) {
-            console.log(err);
-            
+        } catch(error) {
+            // console.log(error);
+            if (error.response) {
+                console.log(error.response.data);
+            }
         }
     }
 
