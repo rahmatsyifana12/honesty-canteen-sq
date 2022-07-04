@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
     const [studentId, setStudentId] = useState('');
@@ -57,6 +58,14 @@ function LoginForm() {
                       onClick={login}
                     >Login
                     </button>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <button
+                        type="button"
+                        className="btn btn-primary btn-lg btn-block ms-2"
+                        style={{ fontSize: "16px" }}
+                        >Back
+                        </button>
+                    </Link>
                 </div>
             </div>
         </form>

@@ -54,6 +54,14 @@ function RegisterForm() {
                       onClick={register}
                     >Register
                     </button>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <button
+                        type="button"
+                        className="btn btn-primary btn-lg btn-block ms-2"
+                        style={{ fontSize: "16px" }}
+                        >Back
+                        </button>
+                    </Link>
                 </div>
             </div>
         </form>

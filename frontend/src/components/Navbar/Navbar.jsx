@@ -4,9 +4,11 @@ function Navbar() {
     return (
         <nav className="navbar navbar-light navbar-expand-lg fixed-top py-3">
           <div className="container">
-            <a className="navbar-brand logo js-scroll-trigger" href="/">
-              <img src="assets/img/logo-full.png" style={{ height: "47px" }} />
-            </a>
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <div>
+                    HonesTeen
+                </div>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
