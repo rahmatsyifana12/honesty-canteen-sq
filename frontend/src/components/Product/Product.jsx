@@ -8,7 +8,7 @@ function Product() {
         fetch('http://localhost:5000/api/v1/products')
             .then((response) => response.json())
             .then((data) => {
-                setProducts(data);
+                setProducts(data.data.products);
             });
     }
 
