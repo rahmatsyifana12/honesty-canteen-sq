@@ -1,13 +1,33 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Navbar() {
     const [accessToken, setAccessToken] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const rawAccessToken = localStorage.getItem('accessToken');
         setAccessToken(rawAccessToken);
     }, [accessToken]);
+
+    const logout = async () => {
+        try{
+            const response = await axios.delete('http://localhost:5000/api/v1/auth/logout', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+            
+            localStorage.setItem('accessToken', '');
+
+            navigate('/');
+        } catch(error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+        }
+    }
 
     return (
         <nav className="navbar navbar-light navbar-expand-lg fixed-top py-3">
@@ -91,6 +111,7 @@ function Navbar() {
                                 <button
                                 className="btn btn-primary shadow ms-2"
                                 type="button"
+                                onClick={logout}
                                 style={{
                                     fontSize: "16px",
                                     paddingRight: "20px",

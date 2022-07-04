@@ -59,7 +59,7 @@ function AddProductForm() {
                     />
                     <input
                         onChange={(e) => setPrice(parseInt(e.target.value))}
-                        id="product-name"
+                        id="price"
                         type="text"
                         className="form-control mb-4"
                         name="price"
