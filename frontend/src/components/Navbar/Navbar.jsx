@@ -54,6 +54,22 @@ function Navbar() {
                     </button>
                   </li>
                 </Link>
+
+                <Link to="/products" style={{ textDecoration: "none" }}>
+                  <li className="nav-item">
+                    <button
+                      className="btn btn-primary shadow ms-2"
+                      type="button"
+                      style={{
+                        fontSize: "16px",
+                        paddingRight: "20px",
+                        paddingLeft: "20px"
+                      }}
+                    >
+                      Add Product
+                    </button>
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
