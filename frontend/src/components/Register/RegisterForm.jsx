@@ -1,7 +1,7 @@
 function RegisterForm() {
     return (
         <div className="container">
-
+            
         </div>
     );
 }
