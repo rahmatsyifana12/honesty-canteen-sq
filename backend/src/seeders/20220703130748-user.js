@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt = require('bcrypt');
 
 function getHashedPassword(password) {
   const hashedPassword = bcrypt.hashSync(
