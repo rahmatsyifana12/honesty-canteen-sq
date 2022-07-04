@@ -13,7 +13,7 @@ function LoginForm() {
     const [errors, setErrors] = useState();
 
     return (
-        <form action="/login" method="POST" className="text-lg-start text-center">
+        <form action="/login" method="POST">
             <FormInputContext.Provider value={[data, setData, errors]}>
                 <LoginFormInput type="text" propKey="username" iconName="user" />
                 <LoginFormInput type="password" propKey="password" iconName="lock" />

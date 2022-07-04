@@ -20,7 +20,7 @@ function RegisterForm() {
                 <RegisterFormInput type="password" propKey="Confirm Password" />
             </FormInputContext.Provider>
             <button type="submit" className="btn">Register</button>
-            <Link to="/login" className="btn">Back</Link>
+            <Link to='/login' className="btn">Back</Link>
         </form>
     );
 }
