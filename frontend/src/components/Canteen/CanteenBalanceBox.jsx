@@ -11,7 +11,7 @@ function CanteenBalanceBox() {
 
     useEffect(() => {
         getBalance();
-    }, []);
+    }, [balance]);
 
     const getBalance = async () => {
         const accessToken = localStorage.getItem('accessToken');
