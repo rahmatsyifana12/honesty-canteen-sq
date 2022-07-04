@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import Product from './components/Product/Product';
 import AddProduct from './components/Product/AddProduct';
 import Home from './components/Home/Home';
+import CanteenBalanceBox from './components/Canteen/CanteenBalanceBox';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route exact path='/login' element={<Login />} />
               <Route exact path='/products' element={<Product />} />
               <Route exact path='/products/add' element={<AddProduct />} />
+              <Route exact path='/canteen' element={<CanteenBalanceBox />} />
           </Route>
       </Routes>
     </div>

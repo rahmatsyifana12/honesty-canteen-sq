@@ -4,20 +4,15 @@ import Navbar from "../Navbar/Navbar";
 
 function CanteenBalanceBox() {
     const [balance, setBalance] = useState(0);
-    const [accessToken, setAccessToken] = useState('');
-
-    useEffect(() => {
-        const rawAccessToken = localStorage.getItem('accessToken');
-        setAccessToken(rawAccessToken);
-    }, [accessToken]);
 
     useEffect(() => {
         getBalance();
     }, []);
 
     const getBalance = async () => {
+        const accessToken = localStorage.getItem('accessToken'); 
         try {
-            const response = await axios.get('http://localhost:5000/api/v1/auth/login', {
+            const response = await axios.get('http://localhost:5000/api/v1/canteen-balance-box', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -33,7 +28,7 @@ function CanteenBalanceBox() {
 
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div>
                 {balance}
             </div>
