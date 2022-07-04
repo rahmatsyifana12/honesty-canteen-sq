@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { Link } from 'react-router-dom';
 import RegisterFormInput from "./RegisterFormInput";
 
 const FormInputContext = createContext();
@@ -18,8 +19,8 @@ function RegisterForm() {
                 <RegisterFormInput type="password" propKey="Password" />
                 <RegisterFormInput type="password" propKey="Confirm Password" />
             </FormInputContext.Provider>
-            {/* <button type="submit" className="btn btn-gold w-75 mb-2" onClick={validateForm}><i className="fa fa-user-plus"></i> Register</button>
-            <Link to="/login" className="btn btn-beige w-75"><i className="fa fa-arrow-left"></i> Back</Link> */}
+            <button type="submit" className="btn">Register</button>
+            <Link to="/login" className="btn">Back</Link>
         </form>
     );
 }
