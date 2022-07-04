@@ -73,7 +73,7 @@ function AddProductForm() {
                     onClick={add}
                     >Add
                     </button>
-                    <Link to="/" style={{ textDecoration: "none" }}>
+                    <Link to="/products" style={{ textDecoration: "none" }}>
                         <button
                         type="button"
                         className="btn btn-primary btn-lg btn-block ms-2"

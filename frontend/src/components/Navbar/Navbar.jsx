@@ -32,6 +32,9 @@ function Navbar() {
     return (
         <nav className="navbar navbar-light navbar-expand-lg fixed-top py-3">
           <div className="container">
+            {
+                
+            }
             <Link to="/" style={{ textDecoration: "none" }}>
                 <div>
                     HonesTeen
@@ -91,7 +94,7 @@ function Navbar() {
                 {
                     localStorage.getItem('accessToken') &&
                     <>
-                        <Link to="/products" style={{ textDecoration: "none" }}>
+                        <Link to="/products/add" style={{ textDecoration: "none" }}>
                             <li className="nav-item">
                                 <button
                                 className="btn btn-primary shadow ms-2"
