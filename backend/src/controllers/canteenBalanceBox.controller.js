@@ -18,7 +18,7 @@ async function addBalance(req, res) {
     });
 }
 
-async function withDraw(req, res) {
+async function withdraw(req, res) {
     const { balance } = req.body;
 
     try {
@@ -55,4 +55,4 @@ async function getBalance(req, res) {
     });
 }
 
-module.exports = { addBalance, withDraw, getBalance };
+module.exports = { addBalance, withdraw, getBalance };

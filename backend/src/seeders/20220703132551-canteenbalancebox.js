@@ -6,7 +6,7 @@ module.exports = {
       'canteenBalanceBox',
       [
         {
-          balance: 0,
+          balance: 1000,
           createdAt: new Date(),
           updatedAt: new Date()
         }
