@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../Navbar/Navbar";
 import ProductItem from "./ProductItem";
 
 function Product() {
@@ -18,6 +19,7 @@ function Product() {
 
     return (
         <div className="container">
+            <Navbar />
             <div className="row mt-lg-5 pt-5 d-flex justify-content-center text-black">
                 {
                     products.map((product) => {

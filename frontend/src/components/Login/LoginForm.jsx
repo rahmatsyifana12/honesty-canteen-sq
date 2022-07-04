@@ -18,7 +18,7 @@ function LoginForm() {
             const accessToken = response.data.data.accessToken;
             localStorage.setItem('accessToken', accessToken);
 
-            navigate('/products');
+            navigate('/');
           } catch(error) {
             if (error.response) {
                 console.log(error.response.data);
