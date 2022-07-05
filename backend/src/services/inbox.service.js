@@ -12,7 +12,7 @@ class InboxService {
             await Inbox.create({ studentId: product.studentId, content });
         } catch (error) {
             if (!error.statusCode) {
-                console.log(error.message);
+                console.log('error at add seller', error.message);
                 throw new ResponseError('Internal server error', 500);
             }
             throw error;
@@ -28,6 +28,7 @@ class InboxService {
 
             await Inbox.create({ studentId, content });
         } catch (error) {
+            console.log('error at add buyer', error.message);
             if (!error.statusCode) {
                 console.log(error.message);
                 throw new ResponseError('Internal server error', 500);
