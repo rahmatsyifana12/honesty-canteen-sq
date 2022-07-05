@@ -1,15 +1,5 @@
 const joi = require('joi');
 
-const passwordSchema = joi.string()
-    .min(6)
-    .max(32)
-
-    .regex(/[0-9]/)
-    .rule({ message: '{#label} requires at least a number' })
-
-    .regex(/[a-z]/)
-    .rule({ message: '{#label} requires at least a lowercase character' })
-
 const newUserSchema = joi.object({
     studentId: joi.string()
         .min(5)
@@ -20,7 +10,10 @@ const newUserSchema = joi.object({
 
         .required(),
 
-    password: passwordSchema.required()
+    password: joi.string()
+        .min(6)
+        .max(32)
+        .required()
 });
 
 module.exports = { newUserSchema };
