@@ -13,7 +13,7 @@ function AddProductForm() {
     const add = async () => {
         const accessToken = localStorage.getItem('accessToken');
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/register', {
+            const response = await axios.post('http://localhost:5000/api/v1/products', {
                 name,
                 image,
                 description,
@@ -23,7 +23,8 @@ function AddProductForm() {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
-            navigate('/');
+
+            navigate('/products');
         } catch(error) {
             if (error.response) {
                 console.log(error.response.data);
@@ -41,16 +42,17 @@ function AddProductForm() {
                         type="text"
                         className="form-control mb-4"
                         name="name"
-                        placeholder="Price"
+                        placeholder="Name"
                         autoFocus
                     />
                     <input
-                        onChange={(e) => setImage(e.target.value)}
-                        id="password"
-                        type="password"
+                        // onChange={(e) => setImage(e.target.value)}
+                        onChange={(e) => setImage('img_url')}
+                        id="image"
+                        type="text"
                         className="form-control mb-4"
-                        name="password"
-                        placeholder="Password"
+                        name="image"
+                        placeholder="Image"
                         autoFocus
                     />
                     <input

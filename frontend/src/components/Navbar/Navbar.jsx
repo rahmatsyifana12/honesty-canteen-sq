@@ -18,7 +18,7 @@ function Navbar() {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
-            
+
             localStorage.setItem('accessToken', '');
 
             navigate('/');
@@ -32,9 +32,6 @@ function Navbar() {
     return (
         <nav className="navbar navbar-light navbar-expand-lg py-3">
           <div className="container">
-            {
-                
-            }
             <Link to="/" style={{ textDecoration: "none" }}>
                 <div>
                     HonesTeen
@@ -106,6 +103,21 @@ function Navbar() {
                                 }}
                                 >
                                 Balance Box
+                                </button>
+                            </li>
+                        </Link>
+                        <Link to="/products" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                View Products
                                 </button>
                             </li>
                         </Link>

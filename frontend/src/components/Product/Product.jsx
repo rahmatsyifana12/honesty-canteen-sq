@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import ProductItem from "./ProductItem";
+import axios from "axios";
+import Loading from "../Loading/Loading";
 
 function Product() {
     const [products, setProducts] = useState([]);
 
-    function getProducts() {
-        fetch('http://localhost:5000/api/v1/products')
-            .then((response) => response.json())
-            .then((data) => {
-                setProducts(data.data.products);
-            });
-    }
-
     useEffect(() => {
         getProducts();
     }, []);
+
+    const getProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/v1/products');
+
+            setProducts(response.data.data.products);
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+        }
+    }
 
     return (
         <div className="container">
