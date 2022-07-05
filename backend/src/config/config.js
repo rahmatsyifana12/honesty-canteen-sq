@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { env } = process;
 
-const config = {
+module.exports = {
     hashRounds: 10,
     port: env.PORT,
     jwt: {
@@ -32,5 +32,3 @@ const config = {
         dialect: 'postgres'
     }
 };
-
-module.exports = config;
