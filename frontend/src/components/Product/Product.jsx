@@ -42,8 +42,8 @@ function Product() {
     return (
         <div className="container">
             <Navbar />
-            <div id="sort">
-                <div>
+            <div id="sort" className="">
+                <div className="">
                     <h6>Sort by product name</h6>
                     <button
                     type="button"
@@ -78,7 +78,7 @@ function Product() {
                     </button>
                 </div>
             </div>
-            <div className="row mt-lg-2 pt-5 d-flex justify-content-center text-black">
+            <div className="row pt-3 d-flex text-black">
                 {
                     products.map((product) => {
                         return (

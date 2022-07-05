@@ -15,7 +15,7 @@ function AddProductForm() {
         try {
             const response = await axios.post('http://localhost:5000/api/v1/products', {
                 name,
-                image,
+                image: 'img_url',
                 description,
                 price
             }, {
@@ -35,7 +35,7 @@ function AddProductForm() {
     return (
         <form method="POST">
             <div className="row">
-                <div className="form-group col-6">
+                <div className="form-group col-6 m-auto">
                     <input
                         onChange={(e) => setName(e.target.value)}
                         id="product-name"
@@ -45,7 +45,7 @@ function AddProductForm() {
                         placeholder="Name"
                         autoFocus
                     />
-                    <input
+                    {/* <input
                         // onChange={(e) => setImage(e.target.value)}
                         onChange={(e) => setImage('img_url')}
                         id="image"
@@ -54,7 +54,7 @@ function AddProductForm() {
                         name="image"
                         placeholder="Image"
                         autoFocus
-                    />
+                    /> */}
                     <input
                         onChange={(e) => setDescription(e.target.value)}
                         id="description"
