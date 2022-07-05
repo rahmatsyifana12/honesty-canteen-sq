@@ -1,6 +1,22 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AddProductForm from "./AddProductForm";
 
 function AddProduct() {
+    const navigate = useNavigate();
+
+    const isLoggedin = () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            navigate('/login');
+            return;
+        }
+    }
+
+    useEffect(() => {
+        isLoggedin();
+    }, []);
+
     return (
         <div className='container'>
             <div>

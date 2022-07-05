@@ -21,8 +21,8 @@ class InboxService {
 
     async addBuyer(studentId, productId) {
         try {
-            const user = await User.findOne({ where: { studentId } });
             const product = await Product.findOne({ where: { id: productId } });
+            console.log(product);
             const content = `You have purchased a product, ${product.name} with a price of ${product.price}. Add your money into the 
                 balance box immediately!`;
 

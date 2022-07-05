@@ -11,10 +11,14 @@ function CanteenBalanceBox() {
 
     useEffect(() => {
         getBalance();
-    }, [balance]);
+    }, []);
 
     const getBalance = async () => {
         const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            navigate('/login');
+            return;
+        }
         try {
             const response = await axios.get('http://localhost:5000/api/v1/canteen-balance-box', {
                 headers: {
