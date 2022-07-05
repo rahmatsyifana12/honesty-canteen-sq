@@ -58,8 +58,16 @@ async function logout(req, res) {
     });
 }
 
+async function token(req, res) {
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully get token'
+    });
+}
+
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    token
 };

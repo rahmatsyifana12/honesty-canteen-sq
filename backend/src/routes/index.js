@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { register, login, logout } = require('../controllers/auth.controller');
+const { register, login, logout, token } = require('../controllers/auth.controller');
 const { addBalance, withdraw, getBalance } = require('../controllers/canteenBalanceBox.controller');
 const { addSellerInbox, getAllInboxes, deleteInbox, addBuyerInbox } = require('../controllers/inbox.controller');
 const { getAllProducts, addProduct, buyProduct } = require('../controllers/product.controller');
@@ -21,6 +21,7 @@ router.post('/api/v1/inboxes/buyer/:productId', authenticate, addBuyerInbox);
 router.get('/api/v1/products', getAllProducts);
 router.get('/api/v1/canteen-balance-box', authenticate, getBalance);
 router.get('/api/v1/inboxes', authenticate, getAllInboxes);
+router.get('/api/v1/tokens', authenticate, token);
 
 // PUT METHOD
 router.put('/api/v1/canteen-balance-box/add', authenticate, addBalance);
