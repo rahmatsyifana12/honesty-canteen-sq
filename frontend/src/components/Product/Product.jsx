@@ -26,7 +26,43 @@ function Product() {
     return (
         <div className="container">
             <Navbar />
-            <div className="row mt-lg-5 pt-5 d-flex justify-content-center text-black">
+            <div id="sort">
+                <div>
+                    <h6>Sort by product name</h6>
+                    <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block"
+                    style={{ fontSize: "16px" }}
+                    // onClick={buy}
+                    >Ascending
+                    </button>
+                    <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block ms-2"
+                    style={{ fontSize: "16px" }}
+                    // onClick={buy}
+                    >Descending
+                    </button>
+                </div>
+                <div className="mt-3">
+                    <h6>Sort by date item created</h6>
+                    <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block"
+                    style={{ fontSize: "16px" }}
+                    // onClick={buy}
+                    >Ascending
+                    </button>
+                    <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block ms-2"
+                    style={{ fontSize: "16px" }}
+                    // onClick={buy}
+                    >Descending
+                    </button>
+                </div>
+            </div>
+            <div className="row mt-lg-2 pt-5 d-flex justify-content-center text-black">
                 {
                     products.map((product) => {
                         return (
