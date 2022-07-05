@@ -13,15 +13,30 @@ const Card = styled.div`
 function ProductItem({ product }) {
     const navigate = useNavigate();
 
+    const addInbox = async (accessToken) => {
+        try {
+            const response = await axios.post(`http://localhost:5000/api/v1/inboxes/${product.id}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }); 
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+        }
+    }
+
     const buy = async () => {
         const accessToken = localStorage.getItem('accessToken');
         try {
+            addInbox(accessToken);
             const response = await axios.delete(`http://localhost:5000/api/v1/products/buy/${product.id}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
-
+            
             navigate('/products');
         } catch (error) {
             if (error.response) {
