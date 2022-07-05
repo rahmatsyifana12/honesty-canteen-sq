@@ -9,6 +9,10 @@ function AddProduct() {
 
     const isLoggedin = async () => {
         const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            navigate('/');
+            return;
+        }
         try {
             const response = await axios.get('http://localhost:5000/api/v1/tokens', {
                 headers: {

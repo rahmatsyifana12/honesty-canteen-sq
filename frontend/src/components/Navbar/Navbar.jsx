@@ -13,12 +13,20 @@ function Navbar() {
     }, [accessToken]);
 
     const logout = async () => {
+        if (!accessToken) {
+            navigate('/');
+            return;
+        }
         try{
             const response = await axios.delete('http://localhost:5000/api/v1/auth/logout', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
+
+            localStorage.setItem('accessToken', '');
+
+            navigate('/');
         } catch(error) {
             if (error.response) {
                 if (error.response.status === 401) {

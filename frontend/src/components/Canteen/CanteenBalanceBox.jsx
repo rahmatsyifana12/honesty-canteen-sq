@@ -5,8 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function CanteenBalanceBox() {
     const [balance, setBalance] = useState(0);
-    const [addBalance, setAddBalance] = useState(0);
-    const [withdrawBalance, setWithdrawbalance] = useState(0);
+    const [inputBalance, setInputBalance] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,7 +15,7 @@ function CanteenBalanceBox() {
     const getBalance = async () => {
         const accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
-            navigate('/login');
+            navigate('/');
             return;
         }
         try {
@@ -29,7 +28,10 @@ function CanteenBalanceBox() {
             setBalance(response.data.data.balance);
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data);
+                if (error.response.status === 401) {
+                    localStorage.setItem('accessToken', '');
+                    navigate('/');
+                }
             }
         }
     }
@@ -38,7 +40,7 @@ function CanteenBalanceBox() {
         const accessToken = localStorage.getItem('accessToken');
         try{
             const response = await axios.put('http://localhost:5000/api/v1/canteen-balance-box/add', {
-                balance: addBalance
+                balance: inputBalance
             }, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -57,7 +59,7 @@ function CanteenBalanceBox() {
         const accessToken = localStorage.getItem('accessToken');
         try{
             const response = await axios.put('http://localhost:5000/api/v1/canteen-balance-box/withdraw', {
-                balance: withdrawBalance
+                balance: inputBalance
             }, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -75,37 +77,28 @@ function CanteenBalanceBox() {
     return (
         <div>
             <Navbar />
-            <div>
-                {balance}
+            <div className="mb-3 mt-3" style={{ fontWeight: "700", fontSize: "20px" }}>
+                Rp{balance}
             </div>
-            <form method="POST">
-                <div className="row">
-                    <div className="form-group col-6">
+            <div>
+                <form method="POST">
+                    <div className="form-group">
                         <input
-                            onChange={(e) => setAddBalance(parseInt(e.target.value))}
-                            id="add"
+                            onChange={(e) => setInputBalance(parseInt(e.target.value))}
+                            id="balance"
                             type="text"
-                            className="form-control mb-4"
-                            name="add"
-                            placeholder="Balance to be added"
+                            className="form-control mb-4 w-25 m-auto"
+                            name="balance"
+                            placeholder="Balance"
                             autoFocus
                         />
                         <button
                         type="button"
-                        className="btn btn-primary btn-lg btn-block mb-4"
-                        style={{ fontSize: "16px" }}
+                        className="btn btn-primary btn-lg btn-block me-2"
+                        style={{ fontSize: "16px", width: "102px" }}
                         onClick={add}
                         >Add
                         </button>
-                        <input
-                            onChange={(e) => setWithdrawbalance(parseInt(e.target.value))}
-                            id="withdraw"
-                            type="text"
-                            className="form-control mb-4"
-                            name="withdraw"
-                            placeholder="Balance to be withdrawed"
-                            autoFocus
-                        />
                         <button
                         type="button"
                         className="btn btn-primary btn-lg btn-block"
@@ -114,8 +107,8 @@ function CanteenBalanceBox() {
                         >Withdraw
                         </button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     );
 }
