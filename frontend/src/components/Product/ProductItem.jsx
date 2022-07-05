@@ -19,10 +19,13 @@ function ProductItem({ product }) {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
-            }); 
+            });
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data);
+                if (error.response.status === 401) {
+                    localStorage.setItem('accessToken', '');
+                    navigate('/login');
+                }
             }
         }
     }
@@ -33,20 +36,19 @@ function ProductItem({ product }) {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
-            }); 
+            });
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data);
+                if (error.response.status === 401) {
+                    localStorage.setItem('accessToken', '');
+                    navigate('/login');
+                }
             }
         }
     }
 
     const buy = async () => {
         const accessToken = localStorage.getItem('accessToken');
-        if (!accessToken) {
-            navigate('/login');
-            return;
-        }
         try {
             addBuyerInbox(accessToken);
             addSellerInbox(accessToken);
@@ -55,11 +57,15 @@ function ProductItem({ product }) {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
-            
+
+            window.location.reload();
             navigate('/products');
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data);
+                if (error.response.status === 401) {
+                    localStorage.setItem('accessToken', '');
+                    navigate('/login');
+                }
             }
         }
     }

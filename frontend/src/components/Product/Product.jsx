@@ -23,6 +23,22 @@ function Product() {
         }
     }
 
+    const sort = (order, base) => {
+        let sortedProducts = [];
+        if (order === 'asc') {
+            sortedProducts = [...products].sort((a, b) => {
+                return (a[base].toLowerCase() > b[base].toLowerCase() ? 1 : -1)
+            });
+        }
+
+        if (order === 'desc') {
+            sortedProducts = [...products].sort((a, b) => {
+                return (a[base].toLowerCase() < b[base].toLowerCase() ? 1 : -1)
+            });
+        }
+        setProducts(sortedProducts);
+    }
+
     return (
         <div className="container">
             <Navbar />
@@ -33,14 +49,14 @@ function Product() {
                     type="button"
                     className="btn btn-primary btn-lg btn-block"
                     style={{ fontSize: "16px" }}
-                    // onClick={buy}
+                    onClick={() => sort('asc', 'name')}
                     >Ascending
                     </button>
                     <button
                     type="button"
                     className="btn btn-primary btn-lg btn-block ms-2"
                     style={{ fontSize: "16px" }}
-                    // onClick={buy}
+                    onClick={() => sort('desc', 'name')}
                     >Descending
                     </button>
                 </div>
@@ -50,14 +66,14 @@ function Product() {
                     type="button"
                     className="btn btn-primary btn-lg btn-block"
                     style={{ fontSize: "16px" }}
-                    // onClick={buy}
+                    onClick={() => sort('asc', 'createdAt')}
                     >Ascending
                     </button>
                     <button
                     type="button"
                     className="btn btn-primary btn-lg btn-block ms-2"
                     style={{ fontSize: "16px" }}
-                    // onClick={buy}
+                    onClick={() => sort('desc', 'createdAt')}
                     >Descending
                     </button>
                 </div>

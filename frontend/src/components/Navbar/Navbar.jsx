@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import jwtDecode from 'jwt-decode';
 
 function Navbar() {
     const [accessToken, setAccessToken] = useState('');
@@ -18,13 +19,12 @@ function Navbar() {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
-
-            localStorage.setItem('accessToken', '');
-
-            navigate('/');
         } catch(error) {
             if (error.response) {
-                console.log(error.response.data);
+                if (error.response.status === 401) {
+                    localStorage.setItem('accessToken', '');
+                    navigate('/');
+                }
             }
         }
     }
@@ -106,6 +106,21 @@ function Navbar() {
                 {
                     localStorage.getItem('accessToken') &&
                     <>
+                        <Link to="/inboxes" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                Inbox
+                                </button>
+                            </li>
+                        </Link>
                         <Link to="/canteen" style={{ textDecoration: "none" }}>
                             <li className="nav-item">
                                 <button
@@ -151,22 +166,20 @@ function Navbar() {
                                 </button>
                             </li>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
-                            <li className="nav-item">
-                                <button
-                                className="btn btn-primary shadow ms-2"
-                                type="button"
-                                onClick={logout}
-                                style={{
-                                    fontSize: "16px",
-                                    paddingRight: "20px",
-                                    paddingLeft: "20px"
-                                }}
-                                >
-                                Sign Out
-                                </button>
-                            </li>
-                        </Link>
+                        <li className="nav-item">
+                            <button
+                            className="btn btn-primary shadow ms-2"
+                            type="button"
+                            onClick={logout}
+                            style={{
+                                fontSize: "16px",
+                                paddingRight: "20px",
+                                paddingLeft: "20px"
+                            }}
+                            >
+                            Sign Out
+                            </button>
+                        </li>
                     </>
                 }
               </ul>
