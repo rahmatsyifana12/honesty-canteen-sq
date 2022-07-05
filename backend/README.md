@@ -14,6 +14,11 @@
 npm install
 ```
 
+#### Install sequelize-cli globally
+```
+npm install -g sequelize-cli
+```
+
 #### Initialize your env
 ```
 cp .env.example .env
