@@ -53,6 +53,21 @@ function Navbar() {
                 {
                     !localStorage.getItem('accessToken') &&
                     <>
+                        <Link to="/products" style={{ textDecoration: "none" }}>
+                            <li className="nav-item">
+                                <button
+                                className="btn btn-primary shadow ms-2"
+                                type="button"
+                                style={{
+                                    fontSize: "16px",
+                                    paddingRight: "20px",
+                                    paddingLeft: "20px"
+                                }}
+                                >
+                                View Products
+                                </button>
+                            </li>
+                        </Link>
                         <Link to="/login" style={{ textDecoration: "none" }}>
                             <li className="nav-item">
                                 <button

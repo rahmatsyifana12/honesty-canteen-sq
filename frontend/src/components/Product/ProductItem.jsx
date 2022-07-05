@@ -43,6 +43,10 @@ function ProductItem({ product }) {
 
     const buy = async () => {
         const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            navigate('/login');
+            return;
+        }
         try {
             addBuyerInbox(accessToken);
             addSellerInbox(accessToken);

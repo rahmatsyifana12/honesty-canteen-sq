@@ -7,7 +7,7 @@ class InboxService {
         try {
             const product = await Product.findOne({ where: { id: productId } });
             const content = `Your product, ${product.name} with a price of ${product.price}
-                has been bought. Withdraw your money from the balance box immediately!`;
+                has been purchased. Withdraw your money from the balance box immediately!`;
 
             await Inbox.create({ studentId: product.studentId, content });
         } catch (error) {
