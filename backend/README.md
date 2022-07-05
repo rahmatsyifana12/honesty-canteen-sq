@@ -19,7 +19,7 @@ npm install
 npm install -g sequelize-cli
 ```
 
-#### Initialize your env
+#### Initialize your `.env` file
 ```
 cp .env.example .env
 ```
@@ -29,7 +29,7 @@ cp .env.example .env
 npm run jwt:generate
 ```
 
-### Fill your database configuration in `.env` file
+### Fill your port and database configuration in `.env` file
 example by default :
 ```
 PORT=5000
