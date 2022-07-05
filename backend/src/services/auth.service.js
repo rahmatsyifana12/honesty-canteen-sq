@@ -65,6 +65,7 @@ class AuthService {
 
             return accessToken;
         } catch (error) {
+            console.log(error.message);
             if (!error.statusCode) {
                 throw new ResponseError('Internal server error', 500);
             }
