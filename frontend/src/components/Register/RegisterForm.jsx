@@ -28,7 +28,7 @@ function RegisterForm() {
     return (
         <form method="POST">
             <div className="row">
-                <div className="form-group col-6">
+                <div className="form-group col-6 m-auto">
                     <input
                         onChange={(e) => setStudentId(e.target.value)}
                         id="student-id"
