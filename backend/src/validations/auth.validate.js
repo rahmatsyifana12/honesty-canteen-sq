@@ -11,7 +11,7 @@ const newUserSchema = joi.object({
         .required(),
 
     password: joi.string()
-        .min(6)
+        .min(2)
         .max(32)
         .required()
 });
