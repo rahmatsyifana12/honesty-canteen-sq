@@ -1,10 +1,11 @@
+const jwt = require('jsonwebtoken');
 const inboxService = require("../services/inbox.service");
 
-async function addInbox(req, res) {
+async function addSellerInbox(req, res) {
     const { productId } = req.params;
 
     try {
-        await inboxService.add(productId);
+        await inboxService.addSeller(productId);
     } catch (error) {
         return res.status(error.statusCode).json({
             status: 'fail',
@@ -16,6 +17,26 @@ async function addInbox(req, res) {
         status: 'success',
         message: 'Successfully added an inbox'
     });
+}
+
+async function addBuyerInbox(req, res) {
+    const accessToken = req.headers['authorization'].split(' ')[1];
+    const studentId = jwt.decode(accessToken).studentId;
+    const { productId } = req.params;
+
+    try {
+        await inboxService.addBuyer(studentId, productId);
+    } catch (error) {
+        return res.status(error.statusCode).json({
+            status: 'fail',
+            message: error.message
+        });
+    }
+
+    return res.status(200).json({
+        status: 'success',
+        message: 'Successfully added an inbox'
+    });    
 }
 
 async function getAllInboxes(req, res) {
@@ -59,4 +80,4 @@ async function deleteInbox(req, res) {
     });
 }
 
-module.exports = { addInbox, getAllInboxes, deleteInbox };
+module.exports = { addSellerInbox, addBuyerInbox, getAllInboxes, deleteInbox };

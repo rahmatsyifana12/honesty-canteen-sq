@@ -1,15 +1,32 @@
-const { Product, Inbox } = require("../models");
+const { Product, Inbox, User } = require("../models");
 const ResponseError = require("../utils/error");
 
 class InboxService {
 
-    async add(productId) {
+    async addSeller(productId) {
         try {
             const product = await Product.findOne({ where: { id: productId } });
             const content = `Your product, ${product.name} with a price of ${product.price}
-                has been bought. Withdraw your money immediately!`;
+                has been bought. Withdraw your money from the balance box immediately!`;
 
             await Inbox.create({ studentId: product.studentId, content });
+        } catch (error) {
+            if (!error.statusCode) {
+                console.log(error.message);
+                throw new ResponseError('Internal server error', 500);
+            }
+            throw error;
+        }
+    }
+
+    async addBuyer(studentId, productId) {
+        try {
+            const user = await User.findOne({ where: { studentId } });
+            const product = await Product.findOne({ where: { id: productId } });
+            const content = `You have purchased a product, ${product.name} with a price of ${product.price}. Add your money into the 
+                balance box immediately!`;
+
+            await Inbox.create({ studentId, content });
         } catch (error) {
             if (!error.statusCode) {
                 console.log(error.message);

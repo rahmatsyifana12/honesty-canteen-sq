@@ -13,9 +13,23 @@ const Card = styled.div`
 function ProductItem({ product }) {
     const navigate = useNavigate();
 
-    const addInbox = async (accessToken) => {
+    const addBuyerInbox = async (accessToken) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/v1/inboxes/${product.id}`, {}, {
+            const response = await axios.post(`http://localhost:5000/api/v1/inboxes/buyer/${product.id}`, {}, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }); 
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response.data);
+            }
+        }
+    }
+
+    const addSellerInbox = async (accessToken) => {
+        try {
+            const response = await axios.post(`http://localhost:5000/api/v1/inboxes/seller/${product.id}`, {}, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -30,7 +44,8 @@ function ProductItem({ product }) {
     const buy = async () => {
         const accessToken = localStorage.getItem('accessToken');
         try {
-            addInbox(accessToken);
+            addBuyerInbox(accessToken);
+            addSellerInbox(accessToken);
             const response = await axios.delete(`http://localhost:5000/api/v1/products/buy/${product.id}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`

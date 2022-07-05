@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { register, login, logout } = require('../controllers/auth.controller');
 const { addBalance, withdraw, getBalance } = require('../controllers/canteenBalanceBox.controller');
-const { addInbox, getAllInboxes, deleteInbox } = require('../controllers/inbox.controller');
+const { addSellerInbox, getAllInboxes, deleteInbox, addBuyerInbox } = require('../controllers/inbox.controller');
 const { getAllProducts, addProduct, buyProduct } = require('../controllers/product.controller');
 const { authenticate } = require('../middlewares/auth.middleware');
 const { validate } = require('../middlewares/validate.middleware');
@@ -14,7 +14,8 @@ const router = Router();
 router.post('/api/v1/auth/register', validate(newUserSchema), register);
 router.post('/api/v1/auth/login', login);
 router.post('/api/v1/products', authenticate, validate(newProductSchema), addProduct);
-router.post('/api/v1/inboxes/:productId', authenticate, addInbox);
+router.post('/api/v1/inboxes/seller/:productId', authenticate, addSellerInbox);
+router.post('/api/v1/inboxes/buyer/:productId', authenticate, addBuyerInbox);
 
 // GET METHOD
 router.get('/api/v1/products', getAllProducts);
