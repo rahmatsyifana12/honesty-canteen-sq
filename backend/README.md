@@ -39,6 +39,7 @@ DB_PASSWORD=password
 DB_DATABASE=honesty_canteen
 DB_HOST=127.0.0.1
 ```
+note : Please use port 5000 because the frontend consume the APIs to port 5000.
 
 #### Create the database locally (if you haven't created it yet)
 ```
