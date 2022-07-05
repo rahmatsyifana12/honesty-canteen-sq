@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import ProductItem from "./ProductItem";
 import axios from "axios";
-import Loading from "../Loading/Loading";
 
 function Product() {
     const [products, setProducts] = useState([]);
